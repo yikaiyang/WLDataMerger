@@ -38,4 +38,5 @@ Run the script using the command:
 
 
 ## License
-Datenquelle: Stadt Wien - https://data.wien.gv.at
+MIT License
+Datenquelle: Stadt Wien - https://data.wien.gv.at, Creative Commons Namensnennung 4.0 International
