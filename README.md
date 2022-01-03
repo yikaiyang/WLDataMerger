@@ -1,4 +1,4 @@
-# WLDataCleaner
+# WLDataMerger
 This repository provides a python script to merge the CSV Open Data resources [[1]](#1) provided by the Wiener Linien in preparation for easier access to the Realtime Monitor API [[2]](#2).
 
 ## Why?
