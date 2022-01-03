@@ -16,23 +16,19 @@ removeAppendixesRegexStr = ' S$| U$| S U$| S,| U,| S U,| SU$| SU,'
 removeInvalidCharRegex = lambda x: re.sub(removeInvalidCharRegexStr, '', x)
 removeInvalidCharRegexStr = '<|>'
 
-removeDummyStationsRegexStr = 'Dummy'
-def removeDummyStations(df):
-    filter = df['StopText'].str.contains(removeDummyStationsRegexStr)
-    print(filter)
-    df = df[~filter]
-    return df
 
 replaceDelimiterRegex = lambda x: re.sub(replaceDelimiterRegexStr, ', ', x)
 replaceDelimiterRegexStr = ' / | - '
 
+
 dfHP = pd.read_csv("./wienerlinien-ogd-haltepunkte.csv", delimiter=';', skiprows=0)
 dfHS = pd.read_csv('./wienerlinien-ogd-haltestellen.csv', delimiter=';', skiprows=0)
+
 
 dfHP= dfHP.dropna(axis=0, how="any")
 dfHP.drop(['StopText','Municipality', 'MunicipalityID'], axis=1, inplace=True)
 dfHS = dfHS.dropna(axis=0, how="any")
-dfHP = removeDummyStations(dfHP)
+
 
 dfResult = pd.merge(dfHP, dfHS, suffixes=['_hp', '_hs'], on= 'DIVA', how='inner')
 dfResult['Platforms'] = dfResult.apply(lambda x: [x['Longitude_hp'] ,x['Latitude_hp']], axis=1)
@@ -68,7 +64,7 @@ dfResult.to_csv('./wienerlinien-ogd-haltepunkte_merged.csv', index = False, sep=
 #     fig = px.scatter_mapbox(dfResult, lat="Latitude", lon="Longitude", hover_name="PlatformText", hover_data=["Longitude", "Latitude"])
 #     fig.update_layout(mapbox_style="open-street-map")
 #     fig.show()
-#showMap() 
+# showMap() 
 
 dfResult.to_csv('./wienerlinien-ogd-haltepunkte_merged.csv', index = False, sep=';')
 dfResult.to_json('./wienerlinien-ogd-haltepunkte_merged.json', orient = 'records')
