@@ -22,7 +22,7 @@ Download the linked csv files [[3]](#3), [[4]](#4) and place them in the same fo
 Ensure that the csv files are named ``wienerlinien-ogd-haltepunkte.csv`` and ``wienerlinien-ogd-haltestellen.csv``. Otherwise change the file names in the script accordingly.
 Install the dependencies specified in requirements.txt.
 
-``pip install requirements.txt``
+``pip install -r requirements.txt``
 
 Run the script using the command:
 

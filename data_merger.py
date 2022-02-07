@@ -46,7 +46,7 @@ dfResult = dfResult.apply({
     'Platforms': lambda x: x,
 }).groupby(['DIVA']).agg({
     'PlatformText': lambda x: x.iloc[0],
-    'StopID': ','.join,
+    'StopID': lambda x: list(x),
     'Municipality': lambda x: x.iloc[0],
     'MunicipalityID': lambda x: x.iloc[0],
     'Latitude_hs': lambda x: x.iloc[0],
